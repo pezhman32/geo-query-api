@@ -12,15 +12,25 @@ import java.util.logging.Logger;
 public class IOImpl implements IO {
 	private static final Logger LOGGER = Logger.getLogger(IOImpl.class.getName());
 
+	/**
+	 * @param toOutput to be printed out
+	 */
 	public void out(String toOutput) {
 		System.out.println(toOutput);
 	}
 
+	/**
+	 * @param toAsk to be printed out before reading user's input
+	 * @return user's input
+	 */
 	public String read(String toAsk) {
 		out(toAsk);
 		return read();
 	}
 
+	/**
+	 * @return user's input
+	 */
 	public String read() {
 		String input = "";
 		try{
