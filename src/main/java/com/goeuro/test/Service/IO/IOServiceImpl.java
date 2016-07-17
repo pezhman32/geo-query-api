@@ -16,7 +16,7 @@ public class IOServiceImpl implements IOService {
 	 * @param toOutput to be printed out
 	 */
 	public void out(String toOutput) {
-		System.out.println(toOutput);
+		System.out.println(">>>>>>>> " + toOutput);
 	}
 
 	/**
