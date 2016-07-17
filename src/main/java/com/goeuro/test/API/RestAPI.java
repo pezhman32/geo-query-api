@@ -25,9 +25,4 @@ public interface RestAPI {
 	 * @param relativeURL to add after base URL
 	 */
 	<T> T POST(String relativeURL, Type returnType, HashMap<String, String> data);
-
-	/**
-	 * returns Type of List<tClass> in order to use for Gson
-	 */
-	<T> Type getTypeForList(Class<T> tClass);
 }

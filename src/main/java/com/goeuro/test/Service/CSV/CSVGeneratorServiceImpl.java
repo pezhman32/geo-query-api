@@ -69,8 +69,9 @@ public class CSVGeneratorServiceImpl implements CSVGeneratorService {
 
 	/**
 	 * You must call this method in order to generate the CSV file
+	 * @param prefix file name prefix
 	 */
-	public void generate() throws CSVGeneratorException {
+	public String generate(String prefix) throws CSVGeneratorException {
 		if (headers.size() == 0) {
 			throw new CSVGeneratorException("You need to have some headers.");
 		}
@@ -83,7 +84,7 @@ public class CSVGeneratorServiceImpl implements CSVGeneratorService {
 		if (StringUtils.isBlank(outputLocation)) {
 			outputLocation = getDefaultLocationToSave();
 		}
-		outputLocation += File.separator + fileNameGenerator();
+		outputLocation += File.separator + fileNameGenerator(prefix);
 
 		//add headers:
 		StringBuilder builder = new StringBuilder();
@@ -94,9 +95,9 @@ public class CSVGeneratorServiceImpl implements CSVGeneratorService {
 			builder.append(headers.get(i));
 		}
 
-		builder.append("\n");
 		//add rows:
 		for (ArrayList<String> row : rows) {
+			builder.append("\n");
 			//add columns:
 			for (int i = 0; i < row.size(); i++) {
 				if (i != 0) {
@@ -112,14 +113,15 @@ public class CSVGeneratorServiceImpl implements CSVGeneratorService {
 			FileOutputStream outputStream = new FileOutputStream(output);
 			outputStream.write(builder.toString().getBytes("UTF-8"));
 			outputStream.close();
+
+			LOGGER.log(Level.INFO, "File saved!");
+			return outputLocation;
 		} catch (Exception e) {
 			throw new CSVGeneratorException(e.getMessage(), e);
 		}
-
-		LOGGER.log(Level.INFO, "File saved!");
 	}
 
-	private String fileNameGenerator() {
-		return String.valueOf(new java.util.Date().getTime()) + ".csv";
+	private String fileNameGenerator(String prefix) {
+		return prefix + "_" + String.valueOf(new java.util.Date().getTime()) + ".csv";
 	}
 }

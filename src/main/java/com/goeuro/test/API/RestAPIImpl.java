@@ -2,7 +2,6 @@ package com.goeuro.test.API;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -13,7 +12,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -75,13 +73,6 @@ public class RestAPIImpl implements RestAPI {
 	 */
 	public <T> T POST(String relativeURL, Type returnType, HashMap<String, String> data) {
 		return null;
-	}
-
-	/**
-	 * returns Type of List<tClass> in order to use for Gson
-	 */
-	public <T> Type getTypeForList(Class<T> tClass) {
-		return new TypeToken<ArrayList<T>>(){}.getType();
 	}
 
 	/**

@@ -2,9 +2,12 @@ package com.goeuro.test.API;
 
 import com.goeuro.test.Entity.CityEntity;
 import com.goeuro.test.common.Constants;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Type;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,12 +24,15 @@ public class GoEuroAPIImpl implements GoEuroAPI {
 		try {
 			RestAPI restAPI = new RestAPIImpl().setBaseURL(Constants.CITY_API_URL);
 			List<CityEntity> cityEntities = restAPI.GET(
-					URLEncoder.encode(city, "UTF-8"),
-					restAPI.getTypeForList(CityEntity.class));
+					URLEncoder.encode(city, "UTF-8"), getTypeForCityList());
 
 			return cityEntities;
 		} catch (UnsupportedEncodingException e) {
 			throw new APIException(e.getMessage(), e);
 		}
+	}
+
+	private Type getTypeForCityList() {
+		return new TypeToken<ArrayList<CityEntity>>(){}.getType();
 	}
 }

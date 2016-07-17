@@ -28,6 +28,7 @@ public interface CSVGeneratorService {
 
 	/**
 	 * You must call this method in order to generate the CSV file
+	 * @param cityName
 	 */
-	void generate() throws CSVGeneratorException;
+	String generate(String cityName) throws CSVGeneratorException;
 }
