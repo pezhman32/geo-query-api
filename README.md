@@ -17,6 +17,8 @@ Implemented services:
 - GoEuroAPI
 
 # How to use?
+GoEuroTest.jar file is available inside the repository and you don't need to build the project.
+
 java -jar ./GoEuroTest.jar "Berlin" logs=off
 
 Both city name argument and logs=off are optional. If city name not provided in arguments list program will ask you to enter it.
